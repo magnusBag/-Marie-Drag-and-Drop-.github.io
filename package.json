@@ -18,6 +18,7 @@
     "vite": "^3.0.0"
   },
   "dependencies": {
-    "@neodrag/svelte": "^1.2.4"
+    "@neodrag/svelte": "^1.2.4",
+    "gh-pages": "^4.0.0"
   }
 }

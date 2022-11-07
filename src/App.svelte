@@ -53,15 +53,20 @@
   answers = answers.sort(() => Math.random() - 0.5);
 </script>
 
-<div class="flex gap-4 m-2 justify-between">
-  <div class="flex flex-wrap gap-2" id="answers">
-    {#each questions as item}
-      <DragItem {item} answer={item.answer} />
-    {/each}
+<main class="h-[150vh] overflow-x-hidden">
+  <h1 class="m-2 font-bold text-center hover:scale-150 transition-transform">
+    Placer firkanterne så spørgsmålene ligger med deres rigtige svar
+  </h1>
+  <div class="flex gap-4 m-2 justify-between">
+    <div class="flex flex-wrap gap-2" id="answers">
+      {#each questions as item}
+        <DragItem {item} answer={item.answer} />
+      {/each}
+    </div>
+    <div class="flex flex-wrap gap-2 justify-end">
+      {#each answers as item}
+        <DragItem {item} answer={item.answer} />
+      {/each}
+    </div>
   </div>
-  <div class="flex flex-wrap gap-2 justify-end">
-    {#each answers as item}
-      <DragItem {item} answer={item.answer} />
-    {/each}
-  </div>
-</div>
+</main>
