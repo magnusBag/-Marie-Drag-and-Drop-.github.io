@@ -1,43 +1,67 @@
 <script>
-  import svelteLogo from './assets/svelte.svg'
-  import Counter from './lib/Counter.svelte'
+  import DragItem from "./lib/dragItem.svelte";
+
+  let questions = [
+    {
+      name: "Spørgsmål: Hvad er de tre elementer i Toulmins grundlæggende argumentationsmodel?",
+    },
+    { name: "Spørgsmål: Hvad kan man bruge Toulmins argumentationsmodel til?" },
+    {
+      name: "Spørgsmål: Hvad kræves der for at noget kan kaldes for et argument?",
+    },
+    { name: "Spørgsmål: Hvad er et arguments 'påstand'?" },
+    { name: "Spørgsmål: Hvad er et arguments 'belæg'?" },
+    { name: "Spørgsmål: Hvad er et arguments 'hjemmel'?" },
+    {
+      name: "Spørgsmål: Hvad kan man spørge om for at finde et arguments påstand?",
+    },
+    {
+      name: "Spørgsmål: Hvad kan man spørge om for at finde et arguments belæg?",
+    },
+    {
+      name: "Spørgsmål: Hvad kan man spørge om for at finde et arguments hjemmel?",
+    },
+  ];
+  questions.forEach((item) => {
+    item.answer = false;
+  });
+  let answers = [
+    { name: "Svar: Påstand, belæg og hjemmel" },
+    {
+      name: "Svar: At analysere argumenter på flere niveauer - at undersøge og være kritisk over for måden der argumenteres på. At se argumenters struktur.",
+    },
+    {
+      name: "Svar: Mindst to elementer: En påstand og et belæg. En påstand alene er et postulat.",
+    },
+    {
+      name: "Svar: Afsenders synspunkt. Det som afsenderen ønsker at vinde tilslutning til.",
+    },
+    {
+      name: "Svar: Direkte støtte for påstanden. Der kan godt findes flere belæg pr. argument.",
+    },
+    {
+      name: "Svar: Leddet, som forbinder påstand og belæg. Et generelt synspunkt, som afsender og modtager deler. Ofte underforstået dvs. ikke sagt direkte i teksten.",
+    },
+    { name: "Svar: 'Hvad ønsker afsender at vinde tilslutning til?'" },
+    { name: "Svar: 'Hvad begrunder afsender påstanden med?'" },
+    { name: "Svar: 'Hvordan skabes sammenhæng mellem belæg og påstand?'" },
+  ];
+  answers.forEach((item) => {
+    item.answer = true;
+  });
+  questions = questions.sort(() => Math.random() - 0.5);
+  answers = answers.sort(() => Math.random() - 0.5);
 </script>
 
-<main
-  class="h-screen flex flex-col items-center justify-center 
-    text-[#213547]"
->
-  <div class="flex">
-    <a href="https://vitejs.dev" target="_blank">
-      <img
-        src="/vite.svg"
-        class="h-36 p-6 hover:drop-shadow-[0_0_2em_#646cffaa]"
-        alt="Vite Logo"
-      />
-    </a>
-    <a href="https://svelte.dev" target="_blank">
-      <img
-        src={svelteLogo}
-        class="h-36 p-6 hover:drop-shadow-[0_0_2em_#ff3e00aa]"
-        alt="Svelte Logo"
-      />
-    </a>
+<div class="flex gap-4 m-2 justify-between">
+  <div class="flex flex-wrap gap-2" id="answers">
+    {#each questions as item}
+      <DragItem {item} answer={item.answer} />
+    {/each}
   </div>
-  <h1 class="text-5xl font-bold my-8">Vite + Svelte</h1>
-
-  <div class="py-12">
-    <Counter />
+  <div class="flex flex-wrap gap-2 justify-end">
+    {#each answers as item}
+      <DragItem {item} answer={item.answer} />
+    {/each}
   </div>
-
-  <p>
-    Check out <a
-      class="text-[#646cff] font-medium hover:text-[#747bff]"
-      href="https://github.com/sveltejs/kit#readme"
-      target="_blank">SvelteKit</a
-    >, the official Svelte app framework powered by Vite!
-  </p>
-
-  <p class="text-[#888] my-4">
-    Click on the Vite and Svelte logos to learn more
-  </p>
-</main>
+</div>
